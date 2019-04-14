@@ -1,6 +1,10 @@
 
 package ocdev.com.br.newswordpress.Data.Model;
 
+import android.databinding.Bindable;
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -33,13 +37,11 @@ public class Article {
 
     /**
      * No args constructor for use in serialization
-     * 
      */
     public Article() {
     }
 
     /**
-     * 
      * @param content
      * @param publishedAt
      * @param author
@@ -61,6 +63,7 @@ public class Article {
         this.content = content;
     }
 
+    @Bindable
     public Source getSource() {
         return source;
     }
@@ -69,6 +72,7 @@ public class Article {
         this.source = source;
     }
 
+    @Bindable
     public String getAuthor() {
         return author;
     }
@@ -77,6 +81,7 @@ public class Article {
         this.author = author;
     }
 
+    @Bindable
     public String getTitle() {
         return title;
     }
@@ -85,6 +90,7 @@ public class Article {
         this.title = title;
     }
 
+    @Bindable
     public String getDescription() {
         return description;
     }
@@ -93,6 +99,7 @@ public class Article {
         this.description = description;
     }
 
+    @Bindable
     public String getUrl() {
         return url;
     }
@@ -101,6 +108,7 @@ public class Article {
         this.url = url;
     }
 
+    @Bindable
     public String getUrlToImage() {
         return urlToImage;
     }
@@ -109,20 +117,30 @@ public class Article {
         this.urlToImage = urlToImage;
     }
 
+    @Bindable
     public String getPublishedAt() {
         return publishedAt;
     }
 
     public void setPublishedAt(String publishedAt) {
         this.publishedAt = publishedAt;
+
     }
 
+    @Bindable
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @BindingAdapter("urlToImage")
+    public static void loadImage(ImageView view, String imageUrl) {
+        Glide.with(view.getContext())
+                .load(imageUrl)
+                .into(view);
     }
 
 }
