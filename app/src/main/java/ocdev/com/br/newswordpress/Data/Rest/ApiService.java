@@ -4,6 +4,7 @@ import io.reactivex.Single;
 import ocdev.com.br.newswordpress.Constantes.Constantes;
 import ocdev.com.br.newswordpress.Data.Model.ResponseNews;
 import retrofit2.Response;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

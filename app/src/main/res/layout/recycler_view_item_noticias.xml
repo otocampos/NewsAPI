@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="news"
+            type="ocdev.com.br.newswordpress.Data.Model.Article" />
+    </data>
 
 
     <android.support.v7.widget.CardView
@@ -20,24 +21,25 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent "
+                android:layout_width="match_parent"
                 android:layout_height="124dp"
-
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/txtTitulo"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:src="@{news.urlToImage}"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
             <TextView
                 android:id="@+id/txtTitulo"
                 android:layout_width="match_parent"
-                android:layout_height="14dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
-                android:text="Titulo"
+                android:text="@{news.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 tools:ignore="MissingConstraints" />
@@ -58,9 +60,10 @@
                 android:id="@+id/txtExcerpt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="excerpt"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="4dp"
+                android:text="@{news.content}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
@@ -68,9 +71,9 @@
                 android:id="@+id/txtData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:text="Data"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:text="@{news.publishedAt}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtExcerpt" />
 
@@ -82,7 +85,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
-                android:text="Categoria"
+                android:text="@{news.author}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.955"
@@ -95,4 +98,4 @@
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</layout>

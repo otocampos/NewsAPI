@@ -3,7 +3,11 @@ package ocdev.com.br.newswordpress.ui.main;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.databinding.BindingAdapter;
 import android.util.Log;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 import ocdev.com.br.newswordpress.Constantes.Constantes;
 import ocdev.com.br.newswordpress.Data.Model.ResponseNews;
 import ocdev.com.br.newswordpress.Data.Rest.ApiService;
+import ocdev.com.br.newswordpress.R;
 import ocdev.com.br.newswordpress.Utils.ApiFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,6 +80,15 @@ public class MainViewModel extends ViewModel {
                 );
 
     }
+
+    @BindingAdapter("android:src")
+    public static void LoadImageUrl(ImageView view, String url) {
+        Glide.with(view.getContext()).
+                load(url).
+                into(view);
+    }
+
+
 }
 
 
