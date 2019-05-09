@@ -59,6 +59,7 @@ public class RecyclerViewNoticiasAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull RecyclerViewNoticiasAdapter.MyViewHolder holder, int position) {
         final Article article = data.get(position);
         holder.bind(article);
+
     }
 
     @Override
