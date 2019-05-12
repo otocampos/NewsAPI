@@ -8,6 +8,8 @@
         <variable
             name="news"
             type="ocdev.com.br.newswordpress.Data.Model.Article" />
+
+
     </data>
 
 

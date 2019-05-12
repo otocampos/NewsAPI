@@ -1,7 +1,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="myAdapter"
+            type="ocdev.com.br.newswordpress.Adapters.RecyclerViewNoticiasAdapter" />
+
 
         <variable
             name="news"
@@ -10,6 +18,10 @@
         <variable
             name="viewmodel"
             type="ocdev.com.br.newswordpress.ui.main.MainViewModel" />
+
+        <variable
+            name="response"
+            type="ocdev.com.br.newswordpress.Data.Model.ResponseNews" />
     </data>
 
 
@@ -18,23 +30,34 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="8dp">
 
-        <android.support.v4.widget.SwipeRefreshLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <ocdev.com.br.newswordpress.Utils.SwipeRefreshLayoutWithEmpty
             android:id="@+id/simpleSwipeRefreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+            tools:ignore="MissingConstraints">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview_noticias"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-        </android.support.v4.widget.SwipeRefreshLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerview_noticias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adapter="@{myAdapter}"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/txtNointernet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </ocdev.com.br.newswordpress.Utils.SwipeRefreshLayoutWithEmpty>
     </android.support.constraint.ConstraintLayout>
 </layout>

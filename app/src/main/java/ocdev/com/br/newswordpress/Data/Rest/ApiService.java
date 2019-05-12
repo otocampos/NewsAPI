@@ -11,5 +11,27 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @GET(Constantes.TOP_HEADLINES)
-    Single<Response<ResponseNews>> getNewsByCountry(@Query(Constantes.COUNTRY) String country, @Query(Constantes.CONSTANTE_KEY_API) String keyapi);
+    Single<Response<ResponseNews>> getNewsByCountry(@Query(Constantes.COUNTRY) String country,@Query(Constantes.CATEGORY) String category, @Query(Constantes.CONSTANTE_KEY_API) String keyapi);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -31,6 +31,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import ocdev.com.br.newswordpress.Constantes.Constantes;
+import ocdev.com.br.newswordpress.Data.Model.Article;
 import ocdev.com.br.newswordpress.Data.Model.ResponseNews;
 import ocdev.com.br.newswordpress.Data.Rest.ApiService;
 import ocdev.com.br.newswordpress.R;
@@ -45,6 +46,10 @@ public class MainViewModel extends ViewModel {
     // TODO: Implement the ViewModel
 
     private static MutableLiveData<ResponseNews> NewsList;
+    public final MutableLiveData<String> categoria = new MutableLiveData();
+    public final MutableLiveData<Article> newsItem = new MutableLiveData();
+
+
     private ApiService api;
     public ObservableBoolean isLoading = new ObservableBoolean();
 
@@ -58,12 +63,14 @@ public class MainViewModel extends ViewModel {
             //we will load it asynchronously from server in this method
             loadNews();
         }
+
         return NewsList;
     }
 
-    public static void loadNews() {
+    public void loadNews() {
+//        Log.v("teste",getCategoria().getValue());
 
-        Single<Response<ResponseNews>> testObservable = ApiFactory.create().getNewsByCountry(Constantes.COUNTRY_NEWS, Constantes.KeyNewsApi);
+        Single<Response<ResponseNews>> testObservable = ApiFactory.create().getNewsByCountry(Constantes.COUNTRY_BR, getCategoria().getValue(), Constantes.KeyNewsApi);
         testObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<Response<ResponseNews>>() {
@@ -85,11 +92,22 @@ public class MainViewModel extends ViewModel {
                                }
                            }
                 );
-
+//        Log.v("testeLoading", getCategoria().getValue());
     }
 
 
+    public MutableLiveData<String> getCategoria() {
+        return categoria;
+    }
 
+    public void setMessage(String msg) {
+        categoria.setValue(msg);
+    }
+
+    public void setNewsItem(Article article) {
+        newsItem.setValue(article);
+
+    }
 
 
 }
