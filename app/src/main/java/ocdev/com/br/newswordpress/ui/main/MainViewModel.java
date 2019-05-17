@@ -3,6 +3,7 @@ package ocdev.com.br.newswordpress.ui.main;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
+import android.content.Intent;
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
 import android.databinding.InverseBindingListener;
@@ -47,7 +48,8 @@ public class MainViewModel extends ViewModel {
 
     private static MutableLiveData<ResponseNews> NewsList;
     public final MutableLiveData<String> categoria = new MutableLiveData();
-    public final MutableLiveData<Article> newsItem = new MutableLiveData();
+    public final MutableLiveData<String> detalhesNoticia = new MutableLiveData();
+
 
 
     private ApiService api;
@@ -95,6 +97,9 @@ public class MainViewModel extends ViewModel {
 //        Log.v("testeLoading", getCategoria().getValue());
     }
 
+    public void onClick(long productId) {
+
+    }
 
     public MutableLiveData<String> getCategoria() {
         return categoria;
@@ -102,13 +107,9 @@ public class MainViewModel extends ViewModel {
 
     public void setMessage(String msg) {
         categoria.setValue(msg);
-    }
-
-    public void setNewsItem(Article article) {
-        newsItem.setValue(article);
+        Log.v("teste", msg + "2");
 
     }
-
 
 }
 

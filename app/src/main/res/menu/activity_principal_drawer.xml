@@ -10,31 +10,32 @@
 
         <item
             android:id="@+id/categoria_general"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/text_lines"
             android:title="@string/categoria_general" />
         <item
             android:id="@+id/categoria_business"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/moneybag"
             android:title="@string/categoria_business" />
         <item
             android:id="@+id/categoria_entertainment"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/confetti"
             android:title="@string/categoria_entertainment" />
         <item
             android:id="@+id/categoria_health"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/heartbeat"
+
             android:title="@string/categoria_saude" />
         <item
             android:id="@+id/categoria_science"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/chemistry"
             android:title="@string/categoria_ciencia" />
         <item
             android:id="@+id/categoria_sports"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/trophy"
             android:title="@string/categoria_esportes" />
         <item
             android:id="@+id/categoria_technology"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/lightbulb"
             android:title="@string/categoria_tecnologia" />
 
     </group>

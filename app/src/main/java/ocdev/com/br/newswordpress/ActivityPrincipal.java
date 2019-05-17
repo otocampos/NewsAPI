@@ -1,10 +1,12 @@
 package ocdev.com.br.newswordpress;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import ocdev.com.br.newswordpress.Constantes.Constantes;
+import javax.inject.Inject;
+
 import ocdev.com.br.newswordpress.Utils.UiUtils;
 import ocdev.com.br.newswordpress.ui.main.MainFragment;
 import ocdev.com.br.newswordpress.ui.main.MainViewModel;
@@ -26,12 +29,16 @@ public class ActivityPrincipal extends AppCompatActivity
     MainViewModel mainViewModel;
     Toolbar toolbar;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getWindow().setStatusBarColor(R.color.colorPrimary);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -93,14 +100,15 @@ public class ActivityPrincipal extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        String CategoriaSelecionada = null;
         String categoria = UiUtils.ControlarLoadCategoria(item.getItemId());
         mainViewModel.setMessage(categoria);
         toolbar.setTitle(item.getTitle());
-        Log.v("clickteste", item.getTitle().toString());
         mainViewModel.loadNews();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
+

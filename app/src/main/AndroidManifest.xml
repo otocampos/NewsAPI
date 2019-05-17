@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".DetailNoticiasActivity"
-            android:label="@string/title_activity_detail_noticias"
+            android:name=".DetalhesActivity"
+            android:label="@string/title_activity_detalhes"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ActivityPrincipal"
@@ -26,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

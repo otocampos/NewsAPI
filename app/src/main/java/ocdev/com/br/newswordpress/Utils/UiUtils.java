@@ -1,17 +1,10 @@
 package ocdev.com.br.newswordpress.Utils;
 
 import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
-import android.databinding.InverseBindingListener;
-import android.databinding.adapters.ListenerUtil;
-import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -21,10 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ocdev.com.br.newswordpress.Constantes.Constantes;
-import ocdev.com.br.newswordpress.Data.Model.Article;
-import ocdev.com.br.newswordpress.MainActivity;
 import ocdev.com.br.newswordpress.R;
-import ocdev.com.br.newswordpress.ui.main.MainViewModel;
 
 public class UiUtils {
     @BindingAdapter("android:src")
@@ -56,6 +46,8 @@ public class UiUtils {
             txtView.setText("Erro");
         }
     }
+
+
 
 
     @BindingAdapter("TextNoInternet")

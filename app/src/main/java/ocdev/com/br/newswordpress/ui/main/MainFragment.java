@@ -3,6 +3,7 @@ package ocdev.com.br.newswordpress.ui.main;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -21,17 +22,20 @@ import android.widget.Toast;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.security.auth.callback.Callback;
 
 import ocdev.com.br.newswordpress.Adapters.RecyclerViewNoticiasAdapter;
 import ocdev.com.br.newswordpress.Constantes.Constantes;
+import ocdev.com.br.newswordpress.Data.Model.Article;
 import ocdev.com.br.newswordpress.Data.Model.ResponseNews;
+import ocdev.com.br.newswordpress.DetalhesActivity;
 import ocdev.com.br.newswordpress.R;
 import ocdev.com.br.newswordpress.Utils.SwipeRefreshLayoutWithEmpty;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements RecyclerViewNoticiasAdapter.OnClickNoticia {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerViewNoticiasAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     SwipeRefreshLayoutWithEmpty swipeRefreshLayout;
     String categoria;
@@ -75,7 +79,7 @@ public class MainFragment extends Fragment {
             }
         });
         mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-
+        mViewModel.setMessage(Constantes.CATEGORY_NAME_GENERAL);
 
         mViewModel.getCategoria().observe(this, new Observer<String>() {
             @Override
@@ -91,7 +95,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         mViewModel.setMessage(Constantes.CATEGORY_NAME_GENERAL);
         ViewModelGetNews();
 
@@ -99,15 +103,30 @@ public class MainFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new RecyclerViewNoticiasAdapter(this);
+
+    }
+
     public void ViewModelGetNews() {
         mViewModel.getNews().observe(this, new Observer<ResponseNews>() {
             @Override
             public void onChanged(@Nullable ResponseNews responseNews) {
                 // define an adapter
-                mAdapter = new RecyclerViewNoticiasAdapter(responseNews.getArticles());
+                mAdapter.setNoticiasData(responseNews.getArticles());
                 recyclerView.setAdapter(mAdapter);
             }
         });
     }
 
+
+    @Override
+    public void getDetalhesNoticias(Article article) {
+        Intent intent = new Intent(getActivity(), DetalhesActivity.class);
+        intent.putExtra("noticia", article);
+        startActivity(intent);
+    }
 }
+

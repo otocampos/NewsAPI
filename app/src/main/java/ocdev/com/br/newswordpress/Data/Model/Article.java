@@ -4,6 +4,8 @@ package ocdev.com.br.newswordpress.Data.Model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
 
 import com.android.databinding.library.baseAdapters.BR;
@@ -11,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Article extends BaseObservable {
+public class Article extends BaseObservable implements Parcelable {
 
     @SerializedName("source")
     @Expose
@@ -41,7 +43,7 @@ public class Article extends BaseObservable {
     /**
      * No args constructor for use in serialization
      */
-    public Article()  {
+    public Article() {
     }
 
     /**
@@ -148,5 +150,43 @@ public class Article extends BaseObservable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(this.source, flags);
+        dest.writeString(this.author);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeString(this.url);
+        dest.writeString(this.urlToImage);
+        dest.writeString(this.publishedAt);
+        dest.writeString(this.content);
+    }
+
+    protected Article(Parcel in) {
+        this.source = in.readParcelable(Source.class.getClassLoader());
+        this.author = in.readString();
+        this.title = in.readString();
+        this.description = in.readString();
+        this.url = in.readString();
+        this.urlToImage = in.readString();
+        this.publishedAt = in.readString();
+        this.content = in.readString();
+    }
+
+    public static final Creator<Article> CREATOR = new Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel source) {
+            return new Article(source);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
 }
