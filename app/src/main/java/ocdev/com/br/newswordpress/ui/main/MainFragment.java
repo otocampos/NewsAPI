@@ -61,6 +61,7 @@ public class MainFragment extends Fragment implements RecyclerViewNoticiasAdapte
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+        ;
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

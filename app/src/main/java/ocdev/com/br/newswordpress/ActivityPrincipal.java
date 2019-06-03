@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -37,8 +38,11 @@ public class ActivityPrincipal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
         getWindow().setStatusBarColor(R.color.colorPrimary);
+
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         FloatingActionButton fab = findViewById(R.id.fab);

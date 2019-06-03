@@ -28,6 +28,10 @@ public class DetalhesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         mViewModel = ViewModelProviders.of(this).get(DetalhesViewModel.class);
         if (savedInstanceState == null) {
             article = getIntent().getParcelableExtra("noticia");

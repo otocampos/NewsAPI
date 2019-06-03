@@ -97,9 +97,6 @@ public class MainViewModel extends ViewModel {
 //        Log.v("testeLoading", getCategoria().getValue());
     }
 
-    public void onClick(long productId) {
-
-    }
 
     public MutableLiveData<String> getCategoria() {
         return categoria;
